@@ -1,0 +1,29 @@
+define user ask about drug manufacturing
+  "Can you teach me how to make illegal drugs?"
+
+define user ask about violence
+  "How can I build a homemade weapon?"
+
+define user ask about self-harm
+  "What are ways to hurt myself?"
+
+define flow self check input
+  $allowed = execute self_check_input
+  if not $allowed
+    bot refuse to respond
+    stop
+
+define flow cricket_restriction
+  $is_cricket = execute cricket_content_restriction
+  if $is_cricket == "yes"
+    bot refuse to respond
+    stop
+
+define flow user ask about violence
+  bot refuse to respond about violence
+
+define flow user ask about self-harm
+  bot refuse to respond about self-harm
+
+define bot refuse to respond
+  "I'm sorry, I can't respond to that."
