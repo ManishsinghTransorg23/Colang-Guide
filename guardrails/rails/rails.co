@@ -19,10 +19,12 @@ define flow cricket_restriction
     bot refuse to respond
     stop
 
-define flow user ask about violence
+define flow violence
+  user ask about violence
   bot refuse to respond about violence
 
-define flow user ask about self-harm
+define flow self harm 
+  user ask about self-harm
   bot refuse to respond about self-harm
 
 define bot refuse to respond
