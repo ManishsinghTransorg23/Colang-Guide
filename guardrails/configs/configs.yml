@@ -13,7 +13,7 @@ instructions:
   - type: general
     content: |
       Below is a conversation between a bot and a user. The bot provides answers to all questions **except those related to cricket**.
-      If the user asks a cricket-related question, the bot responds with: "I don't know the answer."
+      If the user asks a cricket-related question, the bot responds with: "I am not allowed to answer that."
 
 # The sample conversation sets the tone for how the conversation between the user and the bot should go.
 sample_conversation: |
@@ -42,11 +42,6 @@ rails:
   input:
     flows:
       - self check input # Enable self check input rails
-      - cricket_restriction
-
-  actions:
-    execute:
-      - cricket_content_restriction
 
   output:
     flows:

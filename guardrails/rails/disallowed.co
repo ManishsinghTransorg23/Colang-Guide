@@ -7,25 +7,29 @@ define user ask about violence
 define user ask about self-harm
   "What are ways to hurt myself?"
 
+define user ask about cricket
+  "What is cricket?"
+  "Who is virat kohli?"
+  "Who win 2012 ICC world cup?"
+  "What are the rules for LBW out?"
+
 define flow self check input
   $allowed = execute self_check_input
   if not $allowed
     bot refuse to respond
     stop
 
-define flow cricket_restriction
-  $is_cricket = execute cricket_content_restriction
-  if $is_cricket == "yes"
-    bot refuse to respond
-    stop
+define flow
+  user ask about cricket
+  bot refused to respond about cricket
 
-define flow violence
+
+define flow
   user ask about violence
   bot refuse to respond about violence
 
-define flow self harm 
+define flow
   user ask about self-harm
   bot refuse to respond about self-harm
 
-define bot refuse to respond
-  "I'm sorry, I can't respond to that."
+
