@@ -7,17 +7,63 @@ define user ask about violence
 define user ask about self-harm
   "What are ways to hurt myself?"
 
+define user give name
+  "My name is Adam"
+  "I'm Julio"
+  "Sam Altman"
+
+
+define user greeting
+  "Hey there!"
+  "Hi"
+  "Hello"
+  "How are you"
+  "What's up"
+
+define bot name greeting
+  "Hey, $name!"
+
+define flow give name
+  user give name
+  $name = ...
+  bot name greeting
+
+define flow
+  user greeting
+  if not $name
+    bot ask name
+  else
+    bot name greeting
+
+
 define user ask about cricket
   "What is cricket?"
   "Who is virat kohli?"
   "Who win 2012 ICC world cup?"
   "What are the rules for LBW out?"
 
+
 define flow self check input
   $allowed = execute self_check_input
   if not $allowed
     bot refuse to respond
     stop
+
+
+define user ask about weather
+  "What is the weather like in {city_name}?"
+  "Give me the current weather in {city_name}."
+  "Tell me today's weather for {city_name}."
+  "is it raining outside?"
+
+define flow get weather data
+    user ask about weather
+    $result = execute get_weather_data(city_name="$city_name")
+    bot respond with weather data
+
+define bot respond with weather data
+    "The current weather in $city_name is $result"
+
 
 define flow
   user ask about cricket
@@ -32,4 +78,7 @@ define flow
   user ask about self-harm
   bot refuse to respond about self-harm
 
+
+define bot refuse to respond
+  "I'm sorry, I am not allowed to answer that."
 

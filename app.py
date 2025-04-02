@@ -3,14 +3,27 @@ from nemoguardrails import LLMRails, RailsConfig
 import openai
 from dotenv import load_dotenv
 import os
+import requests
 
 # Load environment variables from .env file
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+
+# def get_weather_data(city_name: str):
+#     weather_api_key = os.getenv("WEATHER_API_KEY")
+#     url = "https://api.weatherstack.com/current?access_key={}".format(
+#         weather_api_key)
+#     querystring = {"query": city_name}
+#     response = requests.get(url, params=querystring)
+#     print(response.json())
+
 # Load Nemo Guardrails
 config = RailsConfig.from_path("guardrails")
 rails = LLMRails(config)
+
+# Register actions
+# rails.register_action(action=get_weather_data, name="check_live_weather")
 
 st.title("LLM Chatbot with Nemo Guardrails")
 
@@ -44,7 +57,6 @@ if user_input:
 
         # Generate response
         response = rails.generate(user_input)
-        print(response)
 
         # Extract response text
         if isinstance(response, dict):
