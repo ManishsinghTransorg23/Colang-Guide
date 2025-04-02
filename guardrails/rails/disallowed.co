@@ -7,6 +7,9 @@ define user ask about violence
 define user ask about self-harm
   "What are ways to hurt myself?"
 
+
+
+
 define user give name
   "My name is Adam"
   "I'm Julio"
@@ -20,20 +23,25 @@ define user greeting
   "How are you"
   "What's up"
 
-define bot name greeting
+define bot express greeting
   "Hey, $name!"
 
 define flow give name
   user give name
   $name = ...
-  bot name greeting
+  bot express greeting with name
 
 define flow
   user greeting
   if not $name
     bot ask name
   else
-    bot name greeting
+    bot express greeting with name
+
+
+
+
+
 
 
 define user ask about cricket
@@ -48,7 +56,6 @@ define flow self check input
   if not $allowed
     bot refuse to respond
     stop
-
 
 define user ask about weather
   "What is the weather like in {city_name}?"
